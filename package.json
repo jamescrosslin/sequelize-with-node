@@ -1,0 +1,16 @@
+{
+  "name": "sequelize-with-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sequelize": "^6.6.2",
+    "sqlite": "^4.0.21"
+  }
+}
