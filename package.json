@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "sequelize": "^6.6.2",
-    "sqlite": "^4.0.21"
+    "sqlite3": "^5.0.2"
   }
 }
