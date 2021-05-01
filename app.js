@@ -1,6 +1,10 @@
 const { Sequelize, Model } = require("sequelize");
 
-const sequelize = new Sequelize({ dialect: "sqlite", storage: "movies.db" });
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: "movies.db",
+  // logging: false, //disable logging
+});
 
 class Movie extends Model {}
 Movie.init({ title: Sequelize.STRING }, { sequelize });
@@ -10,8 +14,11 @@ Movie.init({ title: Sequelize.STRING }, { sequelize });
   //will synchronize all tables based on models - follows CREATE TABLE IF NOT EXISTS statement rules
   await sequelize.sync({ force: true }); //force: true  - follow DROP TABLE IF EXISTS which completely deletes the table
   try {
-    const movie = await Movie.create({ title: "Toy Story" });
-    console.log(movie.toJSON());
+    const movieTitles = ["Toy Story", "Jaws", "LORD of the Rings"];
+    const movies = await Promise.all(
+      movieTitles.map((title) => Movie.create({ title }))
+    );
+    console.log(movies.map((movie) => movie.toJSON()));
   } catch (err) {
     console.error("Error connecting to the database: ", err);
   }
