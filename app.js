@@ -1,13 +1,8 @@
-const { Sequelize, Model } = require("sequelize");
+const {
+  models: { Movie },
+  sequelize,
+} = require("./db");
 
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "movies.db",
-  // logging: false, //disable logging
-});
-
-class Movie extends Model {}
-Movie.init({ title: Sequelize.STRING }, { sequelize });
 (async () => {
   //creates or updates table based on Movie model
   //await Movie.sync();
