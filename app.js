@@ -9,9 +9,15 @@ const {
   //will synchronize all tables based on models - follows CREATE TABLE IF NOT EXISTS statement rules
   await sequelize.sync({ force: true }); //force: true  - follow DROP TABLE IF EXISTS which completely deletes the table
   try {
-    const movieTitles = ["Toy Story", "Jaws", "LORD of the Rings"];
+    const movieData = [
+      ["Toy Story", 420, "1946-03-23", true],
+      ["Jaws", 69, "2034-09-14", false],
+      ["LORD of the Rings", 42069, "1969-04-20"],
+    ];
     const movies = await Promise.all(
-      movieTitles.map((title) => Movie.create({ title }))
+      movieData.map(([title, runtime, releaseDate, isAvailableOnVHS]) =>
+        Movie.create({ title, runtime, releaseDate, isAvailableOnVHS })
+      )
     );
     console.log(movies.map((movie) => movie.toJSON()));
   } catch (err) {
