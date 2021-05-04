@@ -1,5 +1,5 @@
 const {
-  models: { Movie },
+  models: { Movie, Person },
   sequelize,
 } = require("./db");
 
@@ -14,12 +14,16 @@ const {
       ["Jaws", 69, "2034-09-14", false],
       ["LORD of the Rings", 42069, "1969-04-20"],
     ];
-    const movies = await Promise.all(
-      movieData.map(([title, runtime, releaseDate, isAvailableOnVHS]) =>
+    const personData = [["Tom", "Hanks"]];
+    const data = await Promise.all([
+      ...movieData.map(([title, runtime, releaseDate, isAvailableOnVHS]) =>
         Movie.create({ title, runtime, releaseDate, isAvailableOnVHS })
-      )
-    );
-    console.log(movies.map((movie) => movie.toJSON()));
+      ),
+      ...personData.map(([firstName, lastName]) =>
+        Person.create({ firstName, lastName })
+      ),
+    ]);
+    console.log(data.map((movie) => movie.toJSON()));
   } catch (err) {
     if (err.name === "SequelizeValidationError") {
       const errors = err.errors.map((error) => error.message);

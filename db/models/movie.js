@@ -54,7 +54,13 @@ module.exports = (sequelize) => {
       },
     },
     //Model options object
-    { sequelize }
+    {
+      // timestamps: false, // removes timestamps from table
+      // freezeTableName: true, // disable pluralization of table name
+      // modelName: 'movie', // model will be lowercase 'movie', table name will be 'movies'
+      // tableName: 'Movies_I_Like', // table will be named "Movies_I_Like"
+      sequelize,
+    }
   );
 
   return Movie;
