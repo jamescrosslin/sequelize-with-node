@@ -21,6 +21,10 @@ const {
     );
     console.log(movies.map((movie) => movie.toJSON()));
   } catch (err) {
-    console.error("Error connecting to the database: ", err);
+    if (err.name === "SequelizeValidationError") {
+      const errors = err.errors.map((error) => error.message);
+      return console.error("Validation errors: ", errors);
+    }
+    throw err;
   }
 })();
