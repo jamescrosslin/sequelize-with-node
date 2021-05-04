@@ -3,6 +3,7 @@ const { Sequelize, Model } = require("sequelize");
 module.exports = (sequelize) => {
   class Movie extends Model {}
   Movie.init(
+    //Attributes object
     {
       //following id is unnecessary, but this is good for understanding how to implement primaryKey values and autoIncrement
       id: {
@@ -52,6 +53,7 @@ module.exports = (sequelize) => {
         defaultValue: false, // set default value
       },
     },
+    //Model options object
     { sequelize }
   );
 
